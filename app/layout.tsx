@@ -1,3 +1,4 @@
+import { Footer, Header } from "@/features";
 import React from "react";
 
 export default function RootLayout({
@@ -7,7 +8,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
