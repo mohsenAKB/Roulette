@@ -13,7 +13,9 @@ const ActionMenu: FC = (): JSX.Element => {
             width={20}
             height={20}
           />
-          <p className="text-emphasis-300 text-[14px] font-semibold">Leave</p>
+          <p className="text-emphasis-300 text-[14px] font-semibold hover:text-title-gray">
+            Leave
+          </p>
         </Link>
       </div>
 
