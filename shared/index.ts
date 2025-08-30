@@ -15,3 +15,4 @@ export { default as cn } from "./utility/cn";
 // components
 export { default as ActionMenu } from "./components/ActionMenu/ActionMenu";
 export { default as PrimaryButton } from "./components/Button/PrimaryButton";
+export { default as PrimaryHighlightedButton } from "./components/Button/PrimaryHighlightedButton";
