@@ -1,7 +1,7 @@
 import React, { FC, ReactNode } from 'react'
 import UserInformation from './UserInformation'
 import Logo from './Logo'
-import Menu from './Menu'
+import Menu from './Menu/Menu'
 
 const Header: FC = (): ReactNode => {
   return (
