@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from "react";
 
-import { LayoutProps } from "@/shared"
+import { LayoutProps, fonts } from "@/shared"
 
 import "./globals.css"
 
@@ -9,7 +9,7 @@ const RootLayout: FC<LayoutProps> = ({
 }): ReactNode => {
   return (
     <html lang="en">
-      <body >
+      <body className={fonts.chakraPetch.variable}>
         {children}
       </body>
     </html>

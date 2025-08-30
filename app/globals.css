@@ -2,10 +2,9 @@
 
 @import "./../shared/styles/colors.css" layer(theme);
 
-@import "./../shared/styles/sizes.css" layer(theme);
-
 * {
   box-sizing: border-box;
+  font-family: var(--font-chakra-petch);
 }
 
 html,
