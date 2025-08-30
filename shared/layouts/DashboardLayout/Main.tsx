@@ -8,7 +8,7 @@ const Main: FC<MainProps> = ({
   children
 }): ReactNode => {
   return (
-    <section>
+    <section className='pt-[68px]'>
       {children}
     </section>
   )
