@@ -13,7 +13,7 @@ const Balance: FC = (): ReactNode => {
         src={"/icons/coin.svg"}
       />
 
-      <span>0.00</span>
+      <span className="text-xs font-medium">0.00</span>
 
       <ArrowIcon className="group-hover:fill-title-gray" />
     </div>

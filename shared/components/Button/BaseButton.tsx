@@ -9,7 +9,7 @@ export const BaseButton: FC<BaseButtonProps> = ({ children, className, ...props 
   return (
     <button
       className={cn(
-        "relative inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:shadow-md",
+        "relative inline-flex items-center justify-center px-4 py-2 rounded-lg duration-200 hover:cursor-pointer",
         className
       )}
       {...props}
