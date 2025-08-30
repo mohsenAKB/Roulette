@@ -2,6 +2,12 @@
   --color-surface: #060b15;
 
   --color-emphasis-300: #9dabbd;
+
+  --color-gray-900: #121925;
+
+  --color-body-gray-900: #9dabbd;
+
+  --color-title-gray: #ffffff;
 }
 
 /* sample light theme */
@@ -9,4 +15,6 @@
   --color-surface: #d1d5dd;
 
   --color-emphasis-300: #9dabbd;
+
+  --color-bg-gray-900: #121925;
 }
