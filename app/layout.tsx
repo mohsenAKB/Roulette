@@ -1,18 +1,20 @@
-import { Footer, Header } from "@/features";
-import React from "react";
+import React, { FC, ReactNode } from "react";
 
-export default function RootLayout({
+import { LayoutProps } from "@/shared"
+
+import "./globals.css"
+
+const RootLayout: FC<LayoutProps> = ({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}): ReactNode => {
   return (
     <html lang="en">
       <body>
-        <Header />
         {children}
-        <Footer />
       </body>
     </html>
   );
 }
+
+
+export default RootLayout
