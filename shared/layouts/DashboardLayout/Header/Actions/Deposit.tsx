@@ -1,9 +1,9 @@
-import PrimaryButton from "@/shared/components/Button/PrimaryButton"
+import { PrimaryHighlightedButton } from "@/shared"
 import Image from "next/image"
 import { FC, ReactNode } from "react"
 
 const Deposit: FC = (): ReactNode => {
-  return <PrimaryButton>
+  return <PrimaryHighlightedButton>
     <Image
       src="\icons\plus-circle.svg"
       width={20}
@@ -13,7 +13,7 @@ const Deposit: FC = (): ReactNode => {
 
 
     <span className="text-[12px] font-medium">Deposit</span>
-  </PrimaryButton>
+  </PrimaryHighlightedButton>
 }
 
 export default Deposit
