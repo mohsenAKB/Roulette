@@ -9,7 +9,7 @@ const Layout: FC<LayoutProps> = ({
   children
 }): ReactNode => {
   return (
-    <main>
+    <main className='w-full h-full bg-surface text-emphasis-300'>
       <Header />
 
       <Main>
