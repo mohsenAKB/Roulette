@@ -9,7 +9,7 @@ const RootLayout: FC<LayoutProps> = ({
 }): ReactNode => {
   return (
     <html lang="en">
-      <body>
+      <body >
         {children}
       </body>
     </html>

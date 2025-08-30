@@ -1,0 +1,12 @@
+@theme {
+  --color-surface: #060b15;
+
+  --color-emphasis-300: #9dabbd;
+}
+
+/* sample light theme */
+.light {
+  --color-surface: #d1d5dd;
+
+  --color-emphasis-300: #9dabbd;
+}
