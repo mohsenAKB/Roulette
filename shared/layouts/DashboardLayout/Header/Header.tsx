@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from 'react'
-import UserInformation from './UserInformation/UserInformation'
+import Actions from './Actions/Actions'
 import Logo from './Logo'
 import Menu from './Menu/Menu'
 
@@ -11,7 +11,7 @@ const Header: FC = (): ReactNode => {
         <Menu />
       </div>
 
-      <UserInformation />
+      <Actions />
     </header>
   )
 }

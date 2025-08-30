@@ -3,13 +3,12 @@
 
   --color-emphasis-300: #9dabbd;
 
+  --color-title-gray: #ffffff;
+  --color-body-gray-900: #9dabbd;
+  --color-gray-500: #616f81;
   --color-gray-900: #121925;
 
-  --color-body-gray-900: #9dabbd;
-
-  --color-title-gray: #ffffff;
-
-  --color-gray-500: #616F81;
+  --color-primary-500: #7d2efa;
 }
 
 /* sample light theme */
