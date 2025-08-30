@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FC, ReactNode } from "react";
+import EmailInput from "./EmailInput/EmailInput";
 
 const Footer: FC = (): ReactNode => {
   return (
@@ -104,13 +105,12 @@ const Footer: FC = (): ReactNode => {
           </ul>
         </div>
 
-        <div className="flex flex-col gap-10 w-[247px]">
+        <div className="flex flex-col gap-10 ">
           <h2 className="text-title-gray text-[22px] font-semibold">
             Subscribe to get offers
           </h2>
-          <ul>
-            <li></li>
-          </ul>
+
+          <EmailInput />
         </div>
       </div>
     </footer>
