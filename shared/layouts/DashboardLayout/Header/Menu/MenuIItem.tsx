@@ -28,7 +28,7 @@ const MenuItem: FC<Props> = ({
       width={20}
       height={20}
     />
-    <span>{title}</span>
+    <span className='font-semibold text-sm'>{title}</span>
 
     {items && <ArrowIcon className="group-hover:fill-title-gray" />}
   </li>
