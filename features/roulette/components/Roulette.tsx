@@ -1,9 +1,14 @@
-import { FC, ReactNode } from "react"
+import { ActionMenu } from "@/shared";
+import { FC, ReactNode } from "react";
 
 const Roulette: FC = (): ReactNode => {
   return (
-    <div>Roulette</div>
-  )
-}
+    <div>
+      <div className="px-[48px]">
+        <ActionMenu />
+      </div>
+    </div>
+  );
+};
 
-export default Roulette
+export default Roulette;
