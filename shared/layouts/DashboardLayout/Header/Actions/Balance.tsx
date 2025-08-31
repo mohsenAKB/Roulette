@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { FC, ReactNode } from "react"
-import ArrowIcon from "./ArrowIcon"
+import ArrowIcon from "../Menu/ArrowIcon"
 
 const Balance: FC = (): ReactNode => {
   return (
