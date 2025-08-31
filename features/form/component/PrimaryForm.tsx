@@ -36,11 +36,18 @@ const PrimaryForm: FC = (): JSX.Element => {
         <div className="bg-gray-900 z-50 rounded-[8px] p-[8px] flex items-center w-[131px] h-[48px]  hover:bg-gray-800  transition-all duration-300 ease-out">
           <Image alt="" src="/icons/star.svg" width={20} height={20} />
 
-          <p className="pl-1 pr-3 text-body-gray-900 text-[14px] font-semibold">
+          <p className=" pr-3 text-body-gray-900 text-[14px] font-semibold">
             Auto Bet
           </p>
 
-          <input type="checkbox"  />
+          <input type="checkbox" id="switch" className="hidden peer" />
+          <label
+            htmlFor="switch"
+            className=" before:mt-[-1px] rounded-[14px] w-[23px] h-[14px] bg-[#78788052] before:content-[''] before:border-2  before:absolute before:w-[12px] before:h-[12px] before:bg-emphasis-300 before:rounded-full before:top-[2px]  before:transition-all checked:bg-blue-600 relative cursor-pointer
+            
+            peer-checked:bg-primary-500 peer-checked:before:translate-x-[10px] peer-checked:before:mt-[-1px] peer-checked:before:bg-white peer-checked:before:border-0
+            "
+          ></label>
         </div>
       </div>
     </div>
