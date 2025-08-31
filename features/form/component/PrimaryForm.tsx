@@ -32,15 +32,15 @@ const PrimaryForm: FC = (): JSX.Element => {
           <InputModifierBtn content="Max" />
         </div>
       </div>
-      <div>
-        <div className="bg-gray-900 rounded-[8px] p-[8px] flex items-center w-[131px] h-[48px]  hover:bg-gray-800  transition-all duration-300 ease-out">
+      <div className="z-999">
+        <div className="bg-gray-900 z-50 rounded-[8px] p-[8px] flex items-center w-[131px] h-[48px]  hover:bg-gray-800  transition-all duration-300 ease-out">
           <Image alt="" src="/icons/star.svg" width={20} height={20} />
 
           <p className="pl-1 pr-3 text-body-gray-900 text-[14px] font-semibold">
             Auto Bet
           </p>
-            
-          <input type="checkbox" />
+
+          <input type="checkbox"  />
         </div>
       </div>
     </div>
