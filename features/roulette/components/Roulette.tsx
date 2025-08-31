@@ -1,10 +1,14 @@
-import { PrimaryForm } from "@/features/form";
+"use client";
+import { PrimaryForm } from "@/features/roulette/components/form";
 import { ActionMenu } from "@/shared";
 import Image from "next/image";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useState } from "react";
 import Rolling from "./Rolling/Rolling";
 
 const Roulette: FC = (): ReactNode => {
+  const [toggle, setToggle] = useState<boolean>(false);
+  console.log(toggle, "toggle");
+
   return (
     <>
       <Image
@@ -15,15 +19,13 @@ const Roulette: FC = (): ReactNode => {
       />
       {/* TODO: should remove min height */}
       <section className="min-h-[1000px] flex flex-col items-center z-1 relative">
-
-
         <div className="w-full px-[48px] my-4">
           <ActionMenu />
         </div>
 
         <Rolling />
 
-        <PrimaryForm />
+        <PrimaryForm toggle={toggle} setToggle={setToggle} />
       </section>
     </>
   );
