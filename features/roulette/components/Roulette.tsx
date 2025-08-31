@@ -6,24 +6,26 @@ import Rolling from "./Rolling/Rolling";
 
 const Roulette: FC = (): ReactNode => {
   return (
-    // TODO: should remove min height
-    <section className="min-h-[1000px] flex flex-col items-center">
-
+    <>
       <Image
         src="/images/background-image.png"
         alt="background"
         fill
         className="max-h-[788px] z-0 object-cover"
       />
+      {/* TODO: should remove min height */}
+      <section className="min-h-[1000px] flex flex-col items-center z-1 relative">
 
-      <div className="w-full px-[48px] my-4">
-        <ActionMenu />
-      </div>
 
-      <Rolling />
+        <div className="w-full px-[48px] my-4">
+          <ActionMenu />
+        </div>
 
-      <PrimaryForm />
-    </section>
+        <Rolling />
+
+        <PrimaryForm />
+      </section>
+    </>
   );
 };
 
