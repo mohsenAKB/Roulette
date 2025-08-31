@@ -17,3 +17,4 @@ export { default as ActionMenu } from "./components/ActionMenu/ActionMenu";
 export { default as PrimaryButton } from "./components/Button/PrimaryButton";
 export { default as PrimaryHighlightedButton } from "./components/Button/PrimaryHighlightedButton";
 export { default as LinearProgress } from "./components/LinearProgress/LinearProgress";
+export { default as InputModifierBtn } from "./components/InputModifierBtn/InputModifierBtn";
