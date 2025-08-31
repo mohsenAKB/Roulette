@@ -9,7 +9,7 @@ const Rolling: FC = (): ReactNode => {
 
 
   return (
-    <section className='w-full'>
+    <section className='w-full flex flex-col gap-3.5'>
       <Timer />
 
       <Cards />
