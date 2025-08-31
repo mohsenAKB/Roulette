@@ -1,3 +1,4 @@
+import { PrimaryForm } from "@/features/form";
 import { ActionMenu } from "@/shared";
 import { FC, ReactNode } from "react";
 
@@ -6,6 +7,7 @@ const Roulette: FC = (): ReactNode => {
     <div>
       <div className="px-[48px] my-4">
         <ActionMenu />
+        <PrimaryForm />
       </div>
     </div>
   );
