@@ -7,93 +7,82 @@ function cn(...classes: (string | false | null | undefined)[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-/**
- * TestInfiniteSlider_StopOnReach
- * - Infinite marquee slider (rAF + modulo; no keyframes)
- * - Half-gap seam (uniform spacing, no double-gap)
- * - Stop-on-item-when-it-reaches-center via arming function
- * - Replace emoji slides with your custom elements
- */
-export default function TestInfiniteSlider_StopOnReach() {
-  // 👉 Replace these with your custom nodes (cards/images/etc.)
+export default function InfiniteSlider_TripleCopy_EqualGap_StopOnReach() {
+  // 👉 Replace with your custom slide nodes
   const items = ["⭐", "⚔️", "🛡️", "🎯", "🔥", "💎", "🍀"];
 
   const speed = 160; // px/sec
-  const gap = 16;    // px spacing (Tailwind gap-4 ~= 16)
-
+  const gap = 16;    // px between ALL cards (uniform)
   const autoPlay = true;
 
   const viewportRef = useRef<HTMLDivElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
-  const setRef = useRef<HTMLDivElement | null>(null);
 
   const [playing, setPlaying] = useState(autoPlay);
   const [ready, setReady] = useState(false);
 
-  // measurements
-  const setWidthRef = useRef(0);      // px width of ONE set (incl. half-gap spacer)
-  const itemWidthsRef = useRef<number[]>([]); // each item width + trailing gap (except last)
-  const itemCentersRef = useRef<number[]>([]); // cumulative centers (within the set)
+  // Measurements based on the FIRST set (first n items in the track)
+  const setWidthRef = useRef(0);                 // loop distance (includes seam gap)
+  const itemCentersRef = useRef<number[]>([]);   // center X (px) of each item within the first set
+  const avgItemWidthRef = useRef(100);           // for shaping the vertical offset falloff
 
-  // animation state
+  // Animation state
   const rafRef = useRef<number | null>(null);
   const lastTsRef = useRef<number | null>(null);
-  const offsetRef = useRef(0);        // translateX in px (we keep it in [-setW, 0))
+  const offsetRef = useRef(0); // translateX in px, kept in [-setW, 0)
 
-  // stop-on-item state
-  const armedIndexRef = useRef<number | null>(null); // which item to stop on (one-time)
+  // Stop-on-item state
+  const armedIndexRef = useRef<number | null>(null);
   const armedRef = useRef(false);
 
-  /** Helper: normalize offset into [-setW, 0) for our transform range */
+  const n = items.length;
+
+  // Render a flat array of 3 copies so neighbors are always visible
+  const flat = React.useMemo(() => [...items, ...items, ...items], [items]);
+
+  // Normalize offset into [-setW, 0)
   const normOffset = (x: number, setW: number) => {
-    let n = ((x % setW) + setW) % setW; // [0, setW)
-    n -= setW;                           // [-setW, 0)
-    return n;
+    let v = ((x % setW) + setW) % setW; // [0, setW)
+    v -= setW;                           // [-setW, 0)
+    return v;
   };
 
-  /** Measure set width & each item's center position (within that set). */
+  // Measure one set (first n children) and compute centers
   const measure = () => {
-    const setEl = setRef.current;
-    if (!setEl) return;
+    const track = trackRef.current;
+    if (!track) return;
 
-    // children: [item, item, ..., half-gap-spacer]
-    const children = Array.from(setEl.children) as HTMLElement[];
-    if (children.length === 0) return;
+    const kids = Array.from(track.children) as HTMLElement[];
+    if (kids.length < n) return;
 
-    // last child is the half-gap spacer — exclude it from item widths
-    const itemEls = children.slice(0, -1);
+    // widths of first set's items
+    const widths = kids.slice(0, n).map((el) => Math.round(el.getBoundingClientRect().width));
+    const sumW = widths.reduce((a, b) => a + b, 0);
+    avgItemWidthRef.current = Math.max(1, Math.round(sumW / Math.max(1, n)));
 
-    // widths (rounded) and cumulative positions
-    const widths = itemEls.map((el) => Math.round(el.getBoundingClientRect().width));
+    // setW = sum(widths) + n * gap  (includes seam gap between last and first)
+    const setW = Math.max(1, sumW + n * gap);
+    setWidthRef.current = setW;
 
-    // add gap after each item except the last (CSS columnGap handles it visually)
-    const widthsPlusGap = widths.map((w, i) => (i < widths.length - 1 ? w + gap : w));
-
-    itemWidthsRef.current = widthsPlusGap;
-
-    // cumulative centers: centerX of each item within the set's local space
+    // centers within the first set:
+    // center(i) = sum(widths[0..i-1]) + i*gap + widths[i]/2
     const centers: number[] = [];
-    let x = 0;
-    for (let i = 0; i < widths.length; i++) {
-      const w = widths[i];
-      const center = x + w / 2;
-      centers.push(Math.round(center));
-      x += widthsPlusGap[i];
+    let acc = 0;
+    for (let i = 0; i < n; i++) {
+      centers.push(acc + i * gap + widths[i] / 2);
+      acc += widths[i];
     }
     itemCentersRef.current = centers;
 
-    // set width: total width + HALF spacer (already in DOM)
-    const setW = Math.max(1, Math.round(setEl.getBoundingClientRect().width));
-    setWidthRef.current = setW;
     setReady(true);
   };
 
-  // Measure after layout settles (fonts, etc.)
+  // Measure after layout settles (fonts/images)
   useLayoutEffect(() => {
     requestAnimationFrame(() => requestAnimationFrame(measure));
-  }, []);
+  }, [n, gap]);
 
-  // Re-measure on resize / content changes (throttled via rAF)
+  // Re-measure on resize (throttled to rAF)
   useEffect(() => {
     let ticking = false;
     const onResize = () => {
@@ -106,7 +95,7 @@ export default function TestInfiniteSlider_StopOnReach() {
     };
     const ro = new ResizeObserver(onResize);
     if (viewportRef.current) ro.observe(viewportRef.current);
-    if (setRef.current) ro.observe(setRef.current);
+    if (trackRef.current) ro.observe(trackRef.current);
     window.addEventListener("resize", onResize);
     return () => {
       ro.disconnect();
@@ -114,23 +103,30 @@ export default function TestInfiniteSlider_StopOnReach() {
     };
   }, []);
 
-  /** Arm a one-time stop when the given item index reaches the center line */
+  // Arm a one-time stop when item index reaches the center line
   const armStopOn = (index: number) => {
-    armedIndexRef.current = ((index % items.length) + items.length) % items.length;
+    if (n === 0) return;
+    armedIndexRef.current = ((index % n) + n) % n;
     armedRef.current = true;
-    // ensure we are playing so it can reach the marker
     setPlaying(true);
   };
 
-  /** Main rAF loop */
+  // ✨ vertical offset effect parameters
+  const AMP_PX = 14; // max translateY in px (downward)
+  // distance at which we hit ~max offset; roughly one card width + gap
+  const INFLUENCE_PX = () => avgItemWidthRef.current + gap;
+
+  // Main rAF loop
   useEffect(() => {
     const track = trackRef.current;
     const viewport = viewportRef.current;
     if (!track || !viewport || !ready) return;
 
+    const children = Array.from(track.children) as HTMLElement[];
+
     const step = (ts: number) => {
       const last = lastTsRef.current ?? ts;
-      const dt = Math.min(100, ts - last); // clamp for background tab jumps
+      const dt = Math.min(100, ts - last); // clamp for tab switches
       lastTsRef.current = ts;
 
       const setW = setWidthRef.current;
@@ -142,30 +138,48 @@ export default function TestInfiniteSlider_StopOnReach() {
         track.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
       }
 
-      // handle armed stop: check if target item center crosses the center marker
+      // stop-on-reach check
       if (armedRef.current && armedIndexRef.current !== null && setW > 0) {
         const idx = armedIndexRef.current;
         const centerX = itemCentersRef.current[idx] ?? 0;
-
-        // current screen position of that item's center:
-        // screenX = (center within set) + current offset
-        // We wrap it into [0, setW) to compare against viewport center mod the cycle.
         let screenX = (centerX + offsetRef.current) % setW;
-        if (screenX < 0) screenX += setW; // [0, setW)
+        if (screenX < 0) screenX += setW;
 
-        const viewportCenter = Math.round((viewport.getBoundingClientRect().width) / 2);
-
-        // dynamic tolerance: distance moved this frame + 1px
+        const viewportCenter = Math.round(viewport.getBoundingClientRect().width / 2);
         const tolerance = Math.max(1, (speed * dt) / 1000 + 0.5);
 
         if (Math.abs(screenX - viewportCenter) <= tolerance) {
-          // Snap exactly to center and stop
           const exactOffset = normOffset(viewportCenter - centerX, setW);
           offsetRef.current = exactOffset;
           track.style.transform = `translate3d(${exactOffset}px, 0, 0)`;
           setPlaying(false);
           armedRef.current = false;
           armedIndexRef.current = null;
+        }
+      }
+
+      // ✨ vertical offset effect: center item at y=0, neighbors slightly lower
+      // We compute each child's visual X and set translateY based on distance to center.
+      if (setW > 0) {
+        const viewportCenter = Math.round(viewport.getBoundingClientRect().width / 2);
+        const infl = INFLUENCE_PX();
+        for (let j = 0; j < children.length; j++) {
+          // base center of this child using its copy index and original index
+          const origIndex = j % n;
+          const copyIndex = Math.floor(j / n);         // 0,1,2
+          const baseCenter = itemCentersRef.current[origIndex] + copyIndex * setW;
+
+          // fold into current cycle [0, setW)
+          let screenX = (baseCenter + offsetRef.current) % setW;
+          if (screenX < 0) screenX += setW;
+
+          const dx = screenX - viewportCenter; // distance from viewport center
+          const p = Math.min(1, Math.abs(dx) / Math.max(1, infl)); // 0..1
+          // easeOutQuad: noticeable near center but gentle
+          const y = AMP_PX * (1 - (1 - p) * (1 - p));
+          // move DOWN (positive) except exactly at center (y≈0)
+          children[j].style.transform = `translateY(${y}px) translateZ(0)`;
+          children[j].style.willChange = "transform";
         }
       }
 
@@ -178,62 +192,41 @@ export default function TestInfiniteSlider_StopOnReach() {
       rafRef.current = null;
       lastTsRef.current = null;
     };
-  }, [playing, speed, ready]);
+  }, [playing, speed, ready, n, gap]);
 
   return (
     <div className="w-full flex flex-col items-center gap-4 p-6">
       <div
         ref={viewportRef}
-        className="relative w-full max-w-3xl h-36 overflow-hidden rounded-2xl bg-black/80"
+        className="relative w-full h-36 overflow-hidden rounded-2xl bg-black/80"
       >
-        {/* visual markers */}
-        <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-black via-transparent to-black opacity-70" />
+        {/* center marker (optional) */}
         <div className="pointer-events-none absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-24 border-x border-pink-400/50" />
 
-        {/* TRACK (no outer gap) */}
+        {/* TRACK: one flat list, 3× copies, uniform gap everywhere */}
         <div
           ref={trackRef}
-          className={cn(
-            "absolute left-0 top-1/2 -translate-y-1/2",
-            "flex will-change-transform select-none"
-          )}
+          className={cn("absolute top-0 left-0", "flex will-change-transform select-none")}
           style={{
-            transform: "translate3d(0, -50%, 0)",
+            transform: "translate3d(0, 0, 0)",
             backfaceVisibility: "hidden",
             perspective: "1000px",
-            contain: "paint layout style",
+            columnGap: `${gap}px`,
           }}
         >
-          {/* Set A (measured) — inner columnGap + trailing HALF spacer */}
-          <div className="flex" style={{ columnGap: `${gap}px` }} ref={setRef}>
-            {items.map((emoji, i) => (
-              <div
-                key={`a-${i}`}
-                className="flex-none w-24 h-28 flex items-center justify-center text-3xl rounded-xl bg-gradient-to-b from-purple-800 to-purple-500 text-white shadow-lg"
-              >
-                {emoji}
-              </div>
-            ))}
-            {/* Half-gap spacer to ensure seam equals one full gap when A meets B */}
-            <div style={{ width: gap / 2, height: 1 }} />
-          </div>
-
-          {/* Set B (identical) — also ends with HALF spacer */}
-          <div className="flex" style={{ columnGap: `${gap}px` }}>
-            {items.map((emoji, i) => (
-              <div
-                key={`b-${i}`}
-                className="flex-none w-24 h-28 flex items-center justify-center text-3xl rounded-xl bg-gradient-to-b from-purple-800 to-purple-500 text-white shadow-lg"
-              >
-                {emoji}
-              </div>
-            ))}
-            <div style={{ width: gap / 2, height: 1 }} />
-          </div>
+          {flat.map((node, i) => (
+            <div
+              key={i}
+              className="flex-none w-24 h-28 flex items-center justify-center text-3xl rounded-xl bg-gradient-to-b from-purple-800 to-purple-500 text-white shadow-lg"
+            // child transform is set per-frame in rAF (translateY)
+            >
+              {typeof node === "string" ? node : node}
+            </div>
+          ))}
         </div>
       </div>
 
-      {/* Demo controls */}
+      {/* test controls */}
       <div className="flex flex-wrap gap-3">
         <button
           onClick={() => setPlaying(true)}
@@ -247,14 +240,11 @@ export default function TestInfiniteSlider_StopOnReach() {
         >
           Pause
         </button>
-
-        {/* Arm stop-on-item buttons (for testing) */}
         {items.map((emoji, i) => (
           <button
             key={i}
             onClick={() => armStopOn(i)}
             className="px-3 py-2 rounded-lg bg-indigo-600 text-white shadow"
-            title={`Stop when ${emoji} reaches center`}
           >
             Stop on {emoji}
           </button>
