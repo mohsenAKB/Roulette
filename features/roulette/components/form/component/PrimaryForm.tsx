@@ -2,7 +2,19 @@ import { InputModifierBtn } from "@/shared";
 import Image from "next/image";
 import React, { FC, JSX } from "react";
 
-const PrimaryForm: FC = (): JSX.Element => {
+interface PrimaryFormProps {
+  toggle: boolean;
+  setToggle: (value: boolean) => void;
+}
+
+const PrimaryForm: FC<PrimaryFormProps> = ({
+  toggle,
+  setToggle,
+}): JSX.Element => {
+  const toggleHandler = () => {
+    setToggle(!toggle);
+  };
+
   return (
     <div className="my-8 flex justify-center gap-[11px]">
       <div className="relative ">
@@ -40,7 +52,12 @@ const PrimaryForm: FC = (): JSX.Element => {
             Auto Bet
           </p>
 
-          <input type="checkbox" id="switch" className="hidden peer" />
+          <input
+            type="checkbox"
+            id="switch"
+            className="hidden peer"
+            onClick={toggleHandler}
+          />
           <label
             htmlFor="switch"
             className=" before:mt-[-1px] rounded-[14px] w-[23px] h-[14px] bg-[#78788052] before:content-[''] before:border-2  before:absolute before:w-[12px] before:h-[12px] before:bg-emphasis-300 before:rounded-full before:top-[2px]  before:transition-all checked:bg-blue-600 relative cursor-pointer
