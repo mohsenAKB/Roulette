@@ -6,7 +6,7 @@ const UsernameProgress: FC = (): ReactNode => {
   return (
     <div className="flex flex-col gap-2 min-w-[100px]">
       <div className="flex flex-row gap-2 items-center">
-        <span className="flex-1 text-body-gray-900 text-[14px] font-semibold text-end">Pouya</span>
+        <span className="flex-1 text-body-gray-900 text-[14px] font-semibold text-end leading-none">Pouya</span>
         <Image
           src="\icons\level-badge.svg"
           alt="user-account"
