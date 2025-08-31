@@ -39,7 +39,7 @@ const PrimaryForm: FC = (): JSX.Element => {
           <p className="pl-1 pr-3 text-body-gray-900 text-[14px] font-semibold">
             Auto Bet
           </p>
-
+            
           <input type="checkbox" />
         </div>
       </div>
