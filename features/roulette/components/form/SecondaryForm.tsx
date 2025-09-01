@@ -1,3 +1,4 @@
+import { PrimaryButton, Tooltip } from "@/shared";
 import Image from "next/image";
 import React, { FC, JSX } from "react";
 
@@ -41,8 +42,9 @@ const SecondaryForm: FC = (): JSX.Element => {
       </div>
 
       <div className="relative">
-        <p className="mt-2.5 mb-1 text-[14px] font-semibold text-gray-500">
+        <p className="mt-2.5 mb-1 text-[14px] font-semibold text-gray-500 flex">
           If I win Increase by
+          <Tooltip text="Tooltip" />
         </p>
         <input
           type="text"
@@ -59,8 +61,9 @@ const SecondaryForm: FC = (): JSX.Element => {
       </div>
 
       <div className="relative">
-        <p className="mt-2.5 mb-1 text-[14px] font-semibold text-gray-500">
+        <p className="mt-2.5 mb-1 text-[14px] font-semibold text-gray-500 flex">
           If I lose Increase by
+          <Tooltip text="Tooltip" />
         </p>
         <input
           type="text"
@@ -75,6 +78,8 @@ const SecondaryForm: FC = (): JSX.Element => {
           className="absolute top-13 left-4 "
         />
       </div>
+
+      <PrimaryButton className="w-[131px] h-[48px] p-3 mt-8 ml-1">Place Bet</PrimaryButton>
     </div>
   );
 };
