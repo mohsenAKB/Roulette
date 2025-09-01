@@ -11,12 +11,13 @@ const PrimaryForm: FC<PrimaryFormProps> = ({
   toggle,
   setToggle,
 }): JSX.Element => {
+
   const toggleHandler = () => {
     setToggle(!toggle);
   };
 
   return (
-    <div className="my-8 flex justify-center gap-[11px]">
+    <div className="mt-8 flex justify-center gap-[11px]">
       <div className="relative ">
         <Image
           alt=""
@@ -43,7 +44,9 @@ const PrimaryForm: FC<PrimaryFormProps> = ({
           <InputModifierBtn content="2X" />
           <InputModifierBtn content="Max" />
         </div>
+
       </div>
+
       <div className="z-999">
         <div className="bg-gray-900 z-50 rounded-[8px] p-[8px] flex items-center w-[131px] h-[48px]  hover:bg-gray-800  transition-all duration-300 ease-out">
           <Image alt="" src="/icons/star.svg" width={20} height={20} />
@@ -58,6 +61,7 @@ const PrimaryForm: FC<PrimaryFormProps> = ({
             className="hidden peer"
             onClick={toggleHandler}
           />
+
           <label
             htmlFor="switch"
             className=" before:mt-[-1px] rounded-[14px] w-[23px] h-[14px] bg-[#78788052] before:content-[''] before:border-2  before:absolute before:w-[12px] before:h-[12px] before:bg-emphasis-300 before:rounded-full before:top-[2px]  before:transition-all checked:bg-blue-600 relative cursor-pointer
@@ -65,8 +69,11 @@ const PrimaryForm: FC<PrimaryFormProps> = ({
             peer-checked:bg-primary-500 peer-checked:before:translate-x-[10px] peer-checked:before:mt-[-1px] peer-checked:before:bg-white peer-checked:before:border-0
             "
           ></label>
+
         </div>
+
       </div>
+      
     </div>
   );
 };
