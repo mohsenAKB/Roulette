@@ -2,18 +2,46 @@
 
 import { StairsSwiper } from "@/shared";
 import { SwiperSlide } from "swiper/react";
+import OptionCard from "./OptionCard/OptionCard";
 
 
 const Cards = () => {
 
-  const items = ["⭐", "⚔️", "🛡️", "🎯", "🔥", "💎", "🍀", "⚔️", "🛡️", "🎯", "🔥", "💎", "🍀", "⭐", "⚔️", "🛡️", "🎯", "🔥", "💎", "🍀", "⚔️", "🛡️", "🎯", "🔥", "💎", "🍀"];
+  const items = [
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+
+    <OptionCard type="cs" />,
+
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+
+    <OptionCard type="cs" />,
+
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="cs" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+
+    <OptionCard type="cs" />,
+
+  ]
 
 
-  return <div>
+  return <div className="min-h-[354px]">
 
     <StairsSwiper
-      gap={16}
-      stepPx={14}
+      gap={12}
+      stepPx={10}
       bandMult={1}
       stairsEffect
       autoplay={{ delay: 900, disableOnInteraction: false }}
@@ -21,14 +49,11 @@ const Cards = () => {
       loop
       centeredSlides
       slidesPerView="auto"
+      className="[&_.swiper]:min-h-[330px]"
     >
-      {items.map((it, i) => (
+      {items.map((item, i) => (
         <SwiperSlide key={i} className="!h-auto">
-          <div
-            className="rounded-xl bg-gradient-to-b from-purple-800 to-purple-500 text-white text-2xl flex items-center justify-center shadow-lg w-[160px] h-[140px]"
-          >
-            {it}
-          </div>
+          {item}
         </SwiperSlide>
       ))}
     </StairsSwiper>

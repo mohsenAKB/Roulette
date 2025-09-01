@@ -120,12 +120,15 @@ const StairsSwiper = forwardRef<StairsSwiperRef, StairsSwiperProps>(function Sta
       const BAND_PX = (cardW + gap) * bandMult;
 
       swiper.slides.forEach((el: HTMLElement) => {
+        // debugger
         const p = (el as any).progress as number;
         const dx = Math.abs(p) * (cardW + gap);
         let rank = Math.floor(dx / BAND_PX);
         if (rank === 0 && Math.abs(p) > 0.001) rank = 1;
-        const y = rank * stepPx;
+        const y = (rank * (rank + 1) / 2) * stepPx;
+        // const y = rank * stepPx + (rank - 1) * stepPx;
         el.style.transform = `translateY(${y}px)`;
+        // el.style.transform = `translateY(${y}px)`;
         el.style.transition = "transform 220ms ease";
       });
     }
@@ -161,7 +164,7 @@ const StairsSwiper = forwardRef<StairsSwiperRef, StairsSwiperProps>(function Sta
         onProgress={handleProgress}
         onSlideChangeTransitionEnd={handleSlideChangeEnd}
         {...rest}
-        className="w-full"
+        className="w-full h-full"
       >
         {slides}
       </Swiper>
