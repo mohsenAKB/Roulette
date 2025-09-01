@@ -32,6 +32,7 @@ const OptionCard: FC<OptionCardProps> = ({
         alt={type}
         width={94}
         height={94}
+        sizes="400"
       />
     }
 
@@ -41,7 +42,11 @@ const OptionCard: FC<OptionCardProps> = ({
   return (
     <div className={cn(
       "w-[147px] h-[218px] flex justify-center items-center",
-      "border-[2px] border-solid [border-image-source:radial-gradient(50%_100%_at_50%_0%,#7F8D9F_0%,rgba(127,141,159,0)_100%)] [border-image-slice:1] bg-[#1219258F] rounded-xl"
+      "border-[2px] border-solid  [border-image-slice:1]",
+      "bg-gray-900/[0.56] rounded-xl",
+      { "[border-image-source:radial-gradient(50%_100%_at_50%_0%,#7F8D9F_6%,rgba(127,141,159,0)_94%)]": type === "silver" || type === "cs" },
+      { "[border-image-source:radial-gradient(50%_100%_at_50%_0%,#FAA300_0%,rgba(250,163,0,0)_100%)]": type === "gold" },
+      { "bg-primary-900": type === "cs" }
     )}>
       {renderImageByType()}
     </div>
