@@ -1,4 +1,4 @@
-import { Tooltip } from "@/shared";
+import { PrimaryButton, Tooltip } from "@/shared";
 import Image from "next/image";
 import React, { FC, JSX } from "react";
 
@@ -78,6 +78,8 @@ const SecondaryForm: FC = (): JSX.Element => {
           className="absolute top-13 left-4 "
         />
       </div>
+
+      <PrimaryButton className="w-[131px] h-[48px] p-3 mt-8 ml-1">Place Bet</PrimaryButton>
     </div>
   );
 };
