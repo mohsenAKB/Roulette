@@ -1,5 +1,5 @@
 "use client";
-import { ActionMenu } from "@/shared";
+import { ActionMenu, Card } from "@/shared";
 import Image from "next/image";
 import { FC, ReactNode, useState } from "react";
 import Rolling from "./Rolling/Rolling";
@@ -27,7 +27,27 @@ const Roulette: FC = (): ReactNode => {
         <Rolling />
 
         <PrimaryForm toggle={toggle} setToggle={setToggle} />
+
         {toggle && <SecondaryForm />}
+        <div className="mt-[23px] flex items-center gap-6 mb-[57px]">
+          <Card
+            title="Play Gold"
+            description="Win 2X"
+            imgSrc="/images/play-gold.svg"
+          />
+
+          <Card
+            title="Play Gold"
+            description="Win 2X"
+            imgSrc="/images/play-gold.svg"
+          />
+
+          <Card
+            title="Play Gold"
+            description="Win 2X"
+            imgSrc="/images/play-gold.svg"
+          />
+        </div>
       </section>
     </>
   );

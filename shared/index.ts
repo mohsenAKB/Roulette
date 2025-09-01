@@ -21,3 +21,4 @@ export { default as LinearProgress } from "./components/LinearProgress/LinearPro
 export { default as InputModifierBtn } from "./components/InputModifierBtn/InputModifierBtn";
 export { default as StairsSwiper } from "./components/StairsSwiper/StairsSwiper";
 export { default as Tooltip } from "./components/Tooltip/Tooltip";
+export { default as Card } from "./components/Card/Card";
