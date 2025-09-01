@@ -48,7 +48,9 @@ const Card: FC<CardProps> = ({
 
       <div className="w-[380px] h-[315px] rounded-[16px] bg-gray-900 hover:bg-[linear-gradient(203.08deg,_#121925_14.9%,_#222D3B_85.02%)]">
         <div className="w-full h-[50px] rounded-tl-[16px] rounded-tr-[16px] bg-gray-800 flex justify-between items-center px-[16px]">
-          <p className="text-[18px] font-semibold text-gray-500 ">4 Player</p>
+          <p className="text-[18px] font-semibold text-emphasis-300 ">
+            4 Player
+          </p>
 
           <div className="flex gap-2 items-center">
             <Image alt="coin" src="/icons/coin.svg" width={20} height={20} />

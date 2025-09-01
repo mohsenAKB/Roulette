@@ -79,7 +79,12 @@ const SecondaryForm: FC = (): JSX.Element => {
         />
       </div>
 
-      <PrimaryButton className="w-[131px] h-[48px] p-3 mt-8 ml-1">Place Bet</PrimaryButton>
+      <PrimaryButton
+        className="w-[131px] h-[48px] p-3 mt-8 ml-1 
+             bg-[radial-gradient(42.35%_100%_at_50%_0%,_#9658FB_0%,_#7D2EFA_100%)]"
+      >
+        Place Bet
+      </PrimaryButton>
     </div>
   );
 };

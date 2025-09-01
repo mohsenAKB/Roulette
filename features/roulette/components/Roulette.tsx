@@ -29,7 +29,7 @@ const Roulette: FC = (): ReactNode => {
         <PrimaryForm toggle={toggle} setToggle={setToggle} />
 
         {toggle && <SecondaryForm />}
-        <div className="mt-[23px] flex items-center gap-6 mb-[57px]">
+        <div className="mt-[32] flex items-center gap-6 mb-[57px]">
           <Card
             title="Play Gold"
             description="Win 2X"
@@ -44,7 +44,9 @@ const Roulette: FC = (): ReactNode => {
             description="Win 14X"
             imgSrc="/images/play-cs2.svg"
             classNameTwo="text-title-gray"
-            className="bg-[radial-gradient(50%_100.32%_at_50%_0%,_#6325C8_0%,_#1A0933_100%)]"
+            className="bg-[radial-gradient(50%_100.32%_at_50%_0%,_#6325C8_0%,_#1A0933_100%)]   border-2 border-solid
+  [border-image-source:radial-gradient(50%_100%_at_50%_0%,_rgba(255,255,255,0.5)_0%,_rgba(255,255,255,0)_100%)]
+  [border-image-slice:1]"
           />
 
           <Card
