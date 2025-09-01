@@ -20,3 +20,4 @@ export { default as PrimaryHighlightedButton } from "./components/Button/Primary
 export { default as LinearProgress } from "./components/LinearProgress/LinearProgress";
 export { default as InputModifierBtn } from "./components/InputModifierBtn/InputModifierBtn";
 export { default as StairsSwiper } from "./components/StairsSwiper/StairsSwiper";
+export { default as Tooltip } from "./components/Tooltip/Tooltip";
