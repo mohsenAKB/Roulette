@@ -26,7 +26,7 @@ const LinearProgress: FC<LinearProgressProps> = ({
         style={{ width: `${percent}%` }}>
         <div className={
           cn(
-            'bg-[linear-gradient(90deg,var(--color-primary-500)_28.12%,var(--color-primary-400)_100%)] w-full h-full  rounded-bl-[50px] rounded-tl-[50px] ',
+            'bg-[linear-gradient(90deg,var(--color-primary-500)_28.12%,var(--color-primary-400)_100%)] w-full h-full  rounded-bl-[50px] rounded-tl-[50px] transition-all duration-100',
             { 'border-r-2 border-primary-100': isGlowing },
             progressClassName
           )} />
