@@ -9,11 +9,6 @@ import Image from "next/image";
 const Cards = () => {
 
   const items = [
-    <OptionCard type="gold" />,
-    <OptionCard type="silver" />,
-    <OptionCard type="gold" />,
-    <OptionCard type="silver" />,
-
     <OptionCard type="cs" />,
 
     <OptionCard type="gold" />,
@@ -27,14 +22,18 @@ const Cards = () => {
     <OptionCard type="silver" />,
     <OptionCard type="gold" />,
     <OptionCard type="silver" />,
+
+    <OptionCard type="cs" />,
+
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
+    <OptionCard type="gold" />,
+    <OptionCard type="silver" />,
     <OptionCard type="cs" />,
     <OptionCard type="gold" />,
     <OptionCard type="silver" />,
     <OptionCard type="gold" />,
     <OptionCard type="silver" />,
-
-    <OptionCard type="cs" />,
-
   ]
 
 
