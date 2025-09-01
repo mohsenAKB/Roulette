@@ -1,10 +1,11 @@
 'use client';
 
-import { FC, ReactNode, Ref, useEffect, useRef, useState } from 'react'
+import { FC, ReactNode, useEffect, useRef, useState } from 'react'
 
 import Timer from './Timer/Timer'
 import Cards from './Cards/Cards';
 import { StairsSwiperRef } from '@/shared';
+import Items from './Items/Items';
 
 const Rolling: FC = (): ReactNode => {
 
@@ -19,7 +20,6 @@ const Rolling: FC = (): ReactNode => {
   useEffect(() => {
     let timerRef: NodeJS.Timeout | null = null
 
-    // progress timer
     const runTimer = (): void => {
       timerRef = setInterval(() => {
 
@@ -31,11 +31,9 @@ const Rolling: FC = (): ReactNode => {
           return
         }
 
-        // slow down delay at last 2s
         if (remainingTimeRef.current < 3000) {
           setSlideDelay(400)
         } else if (remainingTimeRef.current < 6000) {
-          // slow down delay at last 2s
           setSlideDelay(250)
         }
 
@@ -51,12 +49,14 @@ const Rolling: FC = (): ReactNode => {
   }, [])
 
   return (
-    <section className='w-full flex flex-col gap-3.5'>
+    <section className="w-full flex flex-col gap-3.5">
       <Timer time={remainingTime} total={TIME} />
 
       <Cards slideSpeed={300} slideDelay={slideDelay} ref={sliderRef} />
+
+      <Items  />
     </section>
-  )
+  );
 }
 
 export default Rolling
