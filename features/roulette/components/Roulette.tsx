@@ -34,18 +34,26 @@ const Roulette: FC = (): ReactNode => {
             title="Play Gold"
             description="Win 2X"
             imgSrc="/images/play-gold.svg"
+            className="border-[2px] border-solid [border-image-source:radial-gradient(50%_100%_at_50%_0%,#FAA300_0%,rgba(250,163,0,0)_100%)] [border-image-slice:1]
+            hover:text-title-gray hover:bg-[radial-gradient(50%_100.32%_at_50%_0%,_#634202_0%,_#0C111C_100%)] 
+            "
           />
 
           <Card
-            title="Play Gold"
-            description="Win 2X"
-            imgSrc="/images/play-gold.svg"
+            title="Play CS2"
+            description="Win 14X"
+            imgSrc="/images/play-cs2.svg"
+            classNameTwo="text-title-gray"
+            className="bg-[radial-gradient(50%_100.32%_at_50%_0%,_#6325C8_0%,_#1A0933_100%)]"
           />
 
           <Card
-            title="Play Gold"
+            title="Play Silver"
             description="Win 2X"
-            imgSrc="/images/play-gold.svg"
+            imgSrc="/images/play-silver.svg"
+            className="border-[2px] border-solid [border-image-source:radial-gradient(50%_100%_at_50%_0%,#7F8D9F_0%,rgba(127,141,159,0)_100%)] [border-image-slice:1]
+            hover:bg-[radial-gradient(50%_100.32%_at_50%_0%,_#475566_0%,_#0C111C_100%)]
+            "
           />
         </div>
       </section>
