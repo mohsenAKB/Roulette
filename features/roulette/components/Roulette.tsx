@@ -1,9 +1,10 @@
 "use client";
-import { PrimaryForm } from "@/features/roulette/components/form";
 import { ActionMenu } from "@/shared";
 import Image from "next/image";
 import { FC, ReactNode, useState } from "react";
 import Rolling from "./Rolling/Rolling";
+import PrimaryForm from "./form/PrimaryForm";
+import SecondaryForm from "./form/SecondaryForm";
 
 const Roulette: FC = (): ReactNode => {
   const [toggle, setToggle] = useState<boolean>(false);
@@ -26,6 +27,7 @@ const Roulette: FC = (): ReactNode => {
         <Rolling />
 
         <PrimaryForm toggle={toggle} setToggle={setToggle} />
+        {toggle && <SecondaryForm />}
       </section>
     </>
   );
