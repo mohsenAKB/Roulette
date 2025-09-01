@@ -3,6 +3,7 @@
 import { StairsSwiper } from "@/shared";
 import { SwiperSlide } from "swiper/react";
 import OptionCard from "./OptionCard/OptionCard";
+import Image from "next/image";
 
 
 const Cards = () => {
@@ -37,7 +38,13 @@ const Cards = () => {
   ]
 
 
-  return <div className="min-h-[354px]">
+  return <div className="min-h-[354px] flex flex-col items-center gap-3">
+    <Image
+      width={24}
+      height={24}
+      src="/icons/Polygon.svg"
+      alt="arrow"
+    />
 
     <StairsSwiper
       gap={12}
