@@ -8,7 +8,6 @@ import SecondaryForm from "./form/SecondaryForm";
 
 const Roulette: FC = (): ReactNode => {
   const [toggle, setToggle] = useState<boolean>(false);
-  console.log(toggle, "toggle");
 
   return (
     <>
