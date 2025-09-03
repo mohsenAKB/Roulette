@@ -47,8 +47,8 @@ const Rolling: FC = (): ReactNode => {
 
   // rolling runner
   const runRollingTimer = (): void => {
-    setRollingAutoplay(true)
-    sliderRef.current?.swiper?.autoplay.start()
+    // setRollingAutoplay(true)
+    // sliderRef.current?.swiper?.autoplay.start()
 
     mainRollingTimeout.current = setTimeout(() => {
       sliderRef.current?.swiper?.autoplay.stop()
@@ -67,7 +67,9 @@ const Rolling: FC = (): ReactNode => {
   }
 
   useEffect(() => {
-    runRollingTimer()
+    sliderRef.current?.swiper?.autoplay.stop()
+
+    // runRollingTimer()
 
     return () => {
       progressTimeout.current && clearInterval(progressTimeout.current)
