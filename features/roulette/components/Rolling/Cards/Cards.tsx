@@ -9,10 +9,15 @@ import { forwardRef } from "react";
 type CardsProps = {
   slideSpeed: number;
   slideDelay?: number;
+  autoplay?: boolean
 };
 
 const Cards = forwardRef<StairsSwiperRef, CardsProps>(function Cards(
-  { slideSpeed, slideDelay = 900 },
+  {
+    autoplay,
+    slideSpeed,
+    slideDelay = 900
+  },
   ref
 ) {
   const items = [
@@ -48,7 +53,10 @@ const Cards = forwardRef<StairsSwiperRef, CardsProps>(function Cards(
         bandMult={1}
         stairsEffect
         speed={slideSpeed}
-        autoplay={{ delay: slideDelay, disableOnInteraction: false }}
+        autoplay={autoplay
+          ? { delay: slideDelay, disableOnInteraction: false }
+          : undefined
+        }
         allowTouchMove={false}
         loop
         centeredSlides
