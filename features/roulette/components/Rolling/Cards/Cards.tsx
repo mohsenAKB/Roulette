@@ -42,7 +42,7 @@ const Cards = forwardRef<StairsSwiperRef, CardsProps>(function Cards(
   ];
 
   return (
-    <div className="min-h-[354px] flex flex-col items-center gap-3">
+    <div className="min-h-[354px] flex flex-col items-center gap-3 px-2">
       <Image width={24} height={24} src="/icons/Polygon.svg" alt="arrow" />
 
       <StairsSwiper
