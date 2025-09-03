@@ -9,11 +9,10 @@ import Items from './Items/Items';
 
 const Rolling: FC = (): ReactNode => {
 
-  const PROGRESS_TOTAL_TIME = 20000
+  const PROGRESS_TOTAL_TIME = 15000
   const ROLLING_TOTAL_TIME = 5000
 
   const [remainingTime, setRemainingTime] = useState<number>(PROGRESS_TOTAL_TIME)
-  const [rollingAutoplay, setRollingAutoplay] = useState<boolean>(false)
 
   const remainingTimeRef = useRef(PROGRESS_TOTAL_TIME)
   const sliderRef = useRef<StairsSwiperRef>(null)
@@ -26,13 +25,13 @@ const Rolling: FC = (): ReactNode => {
   // progress runner
   const runProgressTimer = (): void => {
     progressTimeout.current = setInterval(() => {
+      sliderRef.current?.swiper?.enable()
 
       remainingTimeRef.current -= 100
 
       // stop progress and run rolling
-      if (remainingTimeRef.current < 0) {
+      if (remainingTimeRef.current <= 0) {
         progressTimeout.current && clearInterval(progressTimeout.current!)
-        sliderRef.current?.swiper?.autoplay?.stop()
 
         runRollingTimer()
         setRemainingTime(PROGRESS_TOTAL_TIME)
@@ -47,29 +46,26 @@ const Rolling: FC = (): ReactNode => {
 
   // rolling runner
   const runRollingTimer = (): void => {
-    // setRollingAutoplay(true)
-    // sliderRef.current?.swiper?.autoplay.start()
+    sliderRef.current?.swiper?.autoplay.start()
 
     mainRollingTimeout.current = setTimeout(() => {
       sliderRef.current?.swiper?.autoplay.stop()
 
       // a delay for stopping rolling and run progress
       delayRollingTimeout.current = setTimeout(() => {
-        setRollingAutoplay(false)
-
         runProgressTimer()
 
         clearTimeout(mainRollingTimeout.current!)
-      }, 500)
+      }, 1000)
 
       clearTimeout(mainRollingTimeout.current!)
     }, ROLLING_TOTAL_TIME)
   }
 
   useEffect(() => {
-    sliderRef.current?.swiper?.autoplay.stop()
+    sliderRef.current?.swiper?.disable()
 
-    // runRollingTimer()
+    runProgressTimer()
 
     return () => {
       progressTimeout.current && clearInterval(progressTimeout.current)
@@ -84,8 +80,7 @@ const Rolling: FC = (): ReactNode => {
 
       <Cards
         slideSpeed={200}
-        slideDelay={200}
-        autoplay={rollingAutoplay}
+        slideDelay={0}
         ref={sliderRef} />
 
       <Items />

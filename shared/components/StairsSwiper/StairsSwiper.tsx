@@ -14,14 +14,14 @@ import React, {
 import { Swiper, SwiperSlide } from "swiper/react";
 import type { SwiperProps } from "swiper/react";
 import type SwiperCore from "swiper";
-import { Autoplay } from "swiper/modules";
+import { Autoplay, FreeMode } from "swiper/modules";
 import "swiper/css";
 
 // Swiper < v9 → SwiperCore.use([Autoplay])
 // Swiper >= v9 → use modules={[Autoplay]}
 // We support both here
 import SwiperCoreNS from "swiper";
-(SwiperCoreNS as any).use?.([Autoplay]);
+(SwiperCoreNS as any).use?.([Autoplay, FreeMode]);
 
 type AnyProps = Record<string, any>;
 const isSlideEl = (el: ReactElement) => {
@@ -58,7 +58,7 @@ const StairsSwiper = forwardRef<StairsSwiperRef, StairsSwiperProps>(function Sta
     slidesPerView = "auto",
     watchSlidesProgress = true,
     allowTouchMove = false,
-    autoplay = { delay: 900, disableOnInteraction: false },
+    autoplay = { delay: 90000, disableOnInteraction: false },
     speed = 380,
 
     onSwiper,
@@ -146,10 +146,10 @@ const StairsSwiper = forwardRef<StairsSwiperRef, StairsSwiperProps>(function Sta
   return (
     <div className={`w-full ${className ?? ""}`}>
       <Swiper
-        modules={[Autoplay]}
+        modules={[Autoplay, FreeMode]}
         onSwiper={(s) => {
-          swiperRef.current = s as SwiperCore;
           onSwiper?.(s);
+          swiperRef.current = s as SwiperCore;
         }}
         loop={loop}
         centeredSlides={centeredSlides}
