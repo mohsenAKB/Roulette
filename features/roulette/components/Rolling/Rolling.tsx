@@ -12,7 +12,8 @@ const Rolling: FC = (): ReactNode => {
   const PROGRESS_TOTAL_TIME = 20000
   const ROLLING_TOTAL_TIME = 5000
 
-  const [remainingTime, setRemainingTime] = useState(PROGRESS_TOTAL_TIME)
+  const [remainingTime, setRemainingTime] = useState<number>(PROGRESS_TOTAL_TIME)
+  const [rollingAutoplay, setRollingAutoplay] = useState<boolean>(false)
 
   const remainingTimeRef = useRef(PROGRESS_TOTAL_TIME)
   const sliderRef = useRef<StairsSwiperRef>(null)
@@ -46,6 +47,7 @@ const Rolling: FC = (): ReactNode => {
 
   // rolling runner
   const runRollingTimer = (): void => {
+    setRollingAutoplay(true)
     sliderRef.current?.swiper?.autoplay.start()
 
     mainRollingTimeout.current = setTimeout(() => {
@@ -53,17 +55,18 @@ const Rolling: FC = (): ReactNode => {
 
       // a delay for stopping rolling and run progress
       delayRollingTimeout.current = setTimeout(() => {
+        setRollingAutoplay(false)
+
         runProgressTimer()
 
         clearTimeout(mainRollingTimeout.current!)
-      }, 1000)
+      }, 500)
 
       clearTimeout(mainRollingTimeout.current!)
     }, ROLLING_TOTAL_TIME)
   }
 
   useEffect(() => {
-    // initial rolling runner
     runRollingTimer()
 
     return () => {
@@ -73,9 +76,15 @@ const Rolling: FC = (): ReactNode => {
 
   return (
     <section className="w-full flex flex-col gap-3.5">
-      <Timer time={remainingTime} total={PROGRESS_TOTAL_TIME} />
+      <Timer
+        time={remainingTime}
+        total={PROGRESS_TOTAL_TIME} />
 
-      <Cards slideSpeed={200} slideDelay={200} ref={sliderRef} />
+      <Cards
+        slideSpeed={200}
+        slideDelay={200}
+        autoplay={rollingAutoplay}
+        ref={sliderRef} />
 
       <Items />
     </section>
