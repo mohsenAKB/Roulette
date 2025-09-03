@@ -18,8 +18,8 @@ const Roulette: FC = (): ReactNode => {
         fill
         className="max-h-[788px] z-0 object-cover"
       />
-      {/* TODO: should remove min height */}
-      <section className="min-h-[1000px] flex flex-col items-center z-1 relative">
+
+      <section className="flex flex-col items-center z-1 relative">
         <div className="w-full px-[48px] my-4">
           <ActionMenu />
         </div>
