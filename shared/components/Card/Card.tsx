@@ -47,8 +47,8 @@ const Card: FC<CardProps> = ({
       </div>
 
       <div className="w-[380px] h-[315px] rounded-[16px] bg-gray-900 hover:bg-[linear-gradient(203.08deg,_#121925_14.9%,_#222D3B_85.02%)]">
-        <div className="w-full h-[50px] rounded-tl-[16px] rounded-tr-[16px] bg-gray-800 flex justify-between items-center px-[16px]">
-          <p className="text-[18px] font-semibold text-emphasis-300 ">
+        <div className="w-full  rounded-tl-[16px] rounded-tr-[16px] bg-gray-800 flex justify-between items-center pl-4 pt-4 pr-[13px] pb-2.5">
+          <p className="text-[18px] font-semibold text-emphasis-300 leading-[20px] ">
             4 Player
           </p>
 
@@ -59,7 +59,7 @@ const Card: FC<CardProps> = ({
         </div>
 
         <div className="flex flex-col gap-5 px-[16px] py-[14px]">
-          <div className="flex justify-between ">
+          <div className="flex justify-between h-[52px] ">
             <div className="flex items-center gap-1">
               <Image
                 alt="avatar"

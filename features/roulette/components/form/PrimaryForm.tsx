@@ -24,7 +24,7 @@ const PrimaryForm: FC<PrimaryFormProps> = ({
           src="/icons/coin.svg"
           width={20}
           height={20}
-          className="absolute top-4 left-3.5"
+          className="absolute top-[15px] left-3.5"
         />
 
         <input
