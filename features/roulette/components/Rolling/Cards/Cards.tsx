@@ -9,12 +9,10 @@ import { forwardRef } from "react";
 type CardsProps = {
   slideSpeed: number;
   slideDelay?: number;
-  autoplay?: boolean
 };
 
 const Cards = forwardRef<StairsSwiperRef, CardsProps>(function Cards(
   {
-    autoplay,
     slideSpeed,
     slideDelay = 900
   },
@@ -53,14 +51,12 @@ const Cards = forwardRef<StairsSwiperRef, CardsProps>(function Cards(
         bandMult={1}
         stairsEffect
         speed={slideSpeed}
-        autoplay={autoplay
-          ? { delay: slideDelay, disableOnInteraction: false }
-          : undefined
-        }
+        autoplay={{ delay: slideDelay, disableOnInteraction: false, }}
         allowTouchMove={false}
         loop
         centeredSlides
         slidesPerView="auto"
+        freeMode
         className="[&_.swiper]:min-h-[330px]"
         ref={ref}
       >
