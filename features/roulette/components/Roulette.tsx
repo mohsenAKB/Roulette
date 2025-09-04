@@ -43,9 +43,9 @@ const Roulette: FC = (): ReactNode => {
             description="Win 14X"
             imgSrc="/images/play-cs2.svg"
             classNameTwo="text-title-gray"
-            className="bg-[radial-gradient(50%_100.32%_at_50%_0%,_#6325C8_0%,_#1A0933_100%)]   border-2 border-solid
-  [border-image-source:radial-gradient(50%_100%_at_50%_0%,_rgba(255,255,255,0.5)_0%,_rgba(255,255,255,0)_100%)]
-  [border-image-slice:1]"
+            className=" bg-gray-900 hover:bg-[radial-gradient(50%_100.32%_at_50%_0%,_#6325C8_0%,_#1A0933_100%)]   border-2 border-solid
+                      [border-image-source:radial-gradient(50%_100%_at_50%_0%,_rgba(255,255,255,0.5)_0%,_rgba(255,255,255,0)_100%)]
+                      [border-image-slice:1]"
           />
 
           <Card

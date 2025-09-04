@@ -6,7 +6,7 @@ import EmailInput from "./EmailInput/EmailInput";
 const Footer: FC = (): ReactNode => {
   return (
     <footer className="w-full  bg-gray-900 p-[70px] ">
-      <div className="max-w-[1140px] flex justify-between mx-auto">
+      <div className="max-w-[1330px] flex justify-between mx-auto">
         <div className="flex flex-col ">
           <Link href="/" className=" mb-[30px]">
             <Image alt="Logo" src="/logo/Logo.svg" width={133} height={44} />
